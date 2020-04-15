@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 14, 2020 at 06:08 PM
+-- Generation Time: Apr 15, 2020 at 04:32 PM
 -- Server version: 10.3.22-MariaDB-0+deb10u1
 -- PHP Version: 7.3.14-1~deb10u1
 
@@ -72,6 +72,7 @@ CREATE TABLE `AwarenessCampaignRecord` (
 
 CREATE TABLE `DreamInterpretations` (
   `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
   `initial_sleep_amt` decimal(4,2) NOT NULL,
   `induced_frequency` decimal(3,1) DEFAULT NULL,
   `meditation_duration` int(2) UNSIGNED DEFAULT NULL,
@@ -217,15 +218,15 @@ CREATE TABLE `MindObjects` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `MindsEyeMeditationMindObjects`
+-- Table structure for table `MindsEyeMeditationObjects`
 --
 
-CREATE TABLE `MindsEyeMeditationMindObjects` (
+CREATE TABLE `MindsEyeMeditationObjects` (
   `id` int(10) UNSIGNED NOT NULL,
   `meditation_id` int(10) UNSIGNED NOT NULL,
-  `mind_object_id` int(10) UNSIGNED NOT NULL,
+  `object_id` int(10) UNSIGNED NOT NULL,
   `sort_order` int(2) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -235,6 +236,7 @@ CREATE TABLE `MindsEyeMeditationMindObjects` (
 
 CREATE TABLE `MindsEyeMeditations` (
   `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
   `starting_mind_object` varchar(255) NOT NULL,
   `approx_duration` int(2) DEFAULT NULL,
   `interpretation` text NOT NULL,
@@ -246,13 +248,13 @@ CREATE TABLE `MindsEyeMeditations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `MindsEyeMindObjects`
+-- Table structure for table `MindsEyeObjects`
 --
 
-CREATE TABLE `MindsEyeMindObjects` (
+CREATE TABLE `MindsEyeObjects` (
   `id` int(10) UNSIGNED NOT NULL,
   `mind_object` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -379,9 +381,9 @@ ALTER TABLE `MindObjects`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `MindsEyeMeditationMindObjects`
+-- Indexes for table `MindsEyeMeditationObjects`
 --
-ALTER TABLE `MindsEyeMeditationMindObjects`
+ALTER TABLE `MindsEyeMeditationObjects`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -391,9 +393,9 @@ ALTER TABLE `MindsEyeMeditations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `MindsEyeMindObjects`
+-- Indexes for table `MindsEyeObjects`
 --
-ALTER TABLE `MindsEyeMindObjects`
+ALTER TABLE `MindsEyeObjects`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -484,9 +486,9 @@ ALTER TABLE `MindObjectReminder`
 ALTER TABLE `MindObjects`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `MindsEyeMeditationMindObjects`
+-- AUTO_INCREMENT for table `MindsEyeMeditationObjects`
 --
-ALTER TABLE `MindsEyeMeditationMindObjects`
+ALTER TABLE `MindsEyeMeditationObjects`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `MindsEyeMeditations`
@@ -494,9 +496,9 @@ ALTER TABLE `MindsEyeMeditationMindObjects`
 ALTER TABLE `MindsEyeMeditations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `MindsEyeMindObjects`
+-- AUTO_INCREMENT for table `MindsEyeObjects`
 --
-ALTER TABLE `MindsEyeMindObjects`
+ALTER TABLE `MindsEyeObjects`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `Reminder`
