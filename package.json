@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "ajv": "^6.10.2",
-        "axios": "^0.18.1",
+        "axios": "^0.21.1",
         "laravel-echo": "^1.5.4",
         "less": "^3.9.0",
         "less-loader": "^4.1.0",
